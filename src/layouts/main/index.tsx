@@ -11,13 +11,14 @@ import {
   UsersIcon,
   XIcon,
 } from "@heroicons/react/outline";
-import Tunebound from "../../images/tunebound.svg";
+import CashFlow from "../../images/cashflow.svg";
 
 interface NavigationItem {
   name: string;
   href: string;
   icon: React.ElementType<{ className: string }>;
   current: boolean;
+  id: string;
 }
 
 type LayoutProps = {
@@ -25,21 +26,21 @@ type LayoutProps = {
 };
 
 const navigation: NavigationItem[] = [
-  { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
-  { name: "Team", href: "#", icon: UsersIcon, current: false },
-  { name: "Projects", href: "#", icon: FolderIcon, current: false },
-  { name: "Calendar", href: "#", icon: CalendarIcon, current: false },
-  { name: "Documents", href: "#", icon: InboxIcon, current: false },
-  { name: "Reports", href: "#", icon: ChartBarIcon, current: false },
+  { name: "Dashboard", href: "#", icon: HomeIcon, current: true, id: "dashboard" },
+  { name: "Team", href: "#", icon: UsersIcon, current: false, id: "team" },
+  { name: "Projects", href: "#", icon: FolderIcon, current: false, id: "projects" },
+  { name: "Calendar", href: "#", icon: CalendarIcon, current: false, id: "calendar" },
+  { name: "Documents", href: "#", icon: InboxIcon, current: false, id: "documents" },
+  { name: "Reports", href: "#", icon: ChartBarIcon, current: false, id: "reports"},
 ];
 
 const authnavigation: NavigationItem[] = [
-  { name: "Dashboard", href: "#", icon: HomeIcon, current: false },
-  { name: "Team", href: "#", icon: UsersIcon, current: false },
-  { name: "Projects", href: "#", icon: FolderIcon, current: false },
-  { name: "Calendar", href: "#", icon: CalendarIcon, current: false },
-  { name: "Documents", href: "#", icon: InboxIcon, current: false },
-  { name: "Reports", href: "#", icon: ChartBarIcon, current: false },
+  { name: "Dashboard", href: "#", icon: HomeIcon, current: false, id: "#cfb2d3" },
+  { name: "Team", href: "#", icon: UsersIcon, current: false, id: "#cfb2d3" },
+  { name: "Projects", href: "#", icon: FolderIcon, current: false, id: "#cfb2d3" },
+  { name: "Calendar", href: "#", icon: CalendarIcon, current: false, id: "#cfb2d3" },
+  { name: "Documents", href: "#", icon: InboxIcon, current: false, id: "#cfb2d3" },
+  { name: "Reports", href: "#", icon: ChartBarIcon, current: false, id: "#cfb2d3" },
 ];
 
 function classNames(...classes: string[]): string {
@@ -106,7 +107,7 @@ export default function MainLayout({ children }: LayoutProps) {
                   <div className="flex-shrink-0 flex items-center px-6">
                     <img
                       className="h-8 w-auto"
-                      src={Tunebound.src}
+                      src={CashFlow.src}
                       alt="Workflow"
                     />
                   </div>
@@ -127,7 +128,7 @@ export default function MainLayout({ children }: LayoutProps) {
                             className={classNames(
                               item.current
                                 ? "text-white"
-                                : "text-gray-900 group-hover:text-white",
+                                : `text-blue-200 group-hover:text-white`,
                               "mr-3 flex-shrink-0 h-4 w-4"
                             )}
                             aria-hidden="true"
@@ -177,12 +178,12 @@ export default function MainLayout({ children }: LayoutProps) {
         {/* Static sidebar for desktop */}
         <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
           {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div className="flex-1 flex flex-col min-h-0 border-r border-gray-800 bg-black-700">
+          <div className="flex-1 flex flex-col min-h-0 bg-black-800">
             <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto gap-10">
               <div className="flex items-center flex-shrink-0 px-6">
                 <img
                   className="h-8 w-auto"
-                  src={Tunebound.src}
+                  src={CashFlow.src}
                   alt="Workflow"
                 />
               </div>
@@ -195,7 +196,7 @@ export default function MainLayout({ children }: LayoutProps) {
                       className={classNames(
                         item.current
                           ? "text-gray-white bg-gray-700 border border-gray-600"
-                          : "text-gray-900 hover:text-white",
+                          :  "text-gray-900 hover:text-white",
                         "group flex items-center px-3 py-2 text-sm font-normal rounded-md"
                       )}
                     >
@@ -203,10 +204,11 @@ export default function MainLayout({ children }: LayoutProps) {
                         className={classNames(
                           item.current
                             ? "text-white"
-                            : "text-gray-900 group-hover:text-white",
+                            : ` group-hover:text-white`,
                           "mr-3 flex-shrink-0 h-4 w-4"
                         )}
                         aria-hidden="true"
+                        id={item.id}
                       />
                       {item.name}
                     </a>

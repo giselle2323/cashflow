@@ -10,9 +10,14 @@ export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
 };
 
-type AppPropsWithLayout = AppProps<{
+// The error is occurring because the MyApp component is receiving a prop initialSession which is not recognized as a valid prop by the AppProps interface. To fix this, you can define a new interface that extends AppProps and includes the initialSession prop.
+
+
+interface AppPropsWithSession extends AppProps {
   initialSession: Session;
-}> & {
+}
+
+type AppPropsWithLayout = AppPropsWithSession & {
   Component: NextPageWithLayout;
 };
 
